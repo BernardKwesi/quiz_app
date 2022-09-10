@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/services/firebase_storage_service.dart';
 import 'package:quiz_app/widgets/app_circle.dart';
 import 'package:get/get.dart';
-
 import '../../config/themes/app_colors.dart';
 
 class IntroductionScreen extends StatelessWidget {
@@ -33,7 +33,9 @@ class IntroductionScreen extends StatelessWidget {
               height: 40,
             ),
             AppCircleButton(
-              onTap: () => null,
+              onTap: () {
+                Get.offAllNamed("/home");
+              },
               child: const Icon(Icons.arrow_forward, size: 35),
             ),
           ])),
