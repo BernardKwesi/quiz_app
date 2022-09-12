@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../firebase_ref/references.dart';
 import '../../models/question.dart';
 import '../../services/firebase_storage_service.dart';
+import '../auth_controller.dart';
 
 class QuestionPaperController extends GetxController {
   final allPaperImages = <String>[].obs;
@@ -16,30 +17,44 @@ class QuestionPaperController extends GetxController {
 
   Future<void> getAllPapers() async {
     List<String> imgName = ['biology', 'chemistry', 'math', 'physics'];
-    print("============== Hom ===================");
-    /*  try { */
-    QuerySnapshot<Map<String, dynamic>> data = await questionPaperRF.get();
-    final paperList =
-        data.docs.map((paper) => QuestionModel.fromSnapShot(paper)).toList();
-    allPapers.assignAll(paperList);
 
-    for (var paper in paperList) {
-      for (var imgname in imgName) {
-        if (imgname.toLowerCase() == paper.title.toLowerCase()) {
-          final imgUrl =
-              await Get.find<FirebaseStorageService>().getImage(imgname);
-          paper.imageUrl = imgUrl;
+    try {
+      QuerySnapshot<Map<String, dynamic>> data = await questionPaperRF.get();
+      final paperList =
+          data.docs.map((paper) => QuestionModel.fromSnapShot(paper)).toList();
+      allPapers.assignAll(paperList);
+
+      for (var paper in paperList) {
+        for (var imgname in imgName) {
+          if (imgname == paper.title.toLowerCase()) {
+            final imgUrl =
+                await Get.find<FirebaseStorageService>().getImage(imgname);
+            paper.imageUrl = imgUrl;
+          }
         }
       }
-      /*   final imgUrl =
-          await Get.find<FirebaseStorageService>().getImage(paper.title);
-      paper.imageUrl = imgUrl; */
-    }
-    print("================Hello World================");
-    print(paperList);
-    allPapers.assignAll(paperList);
-    /*    } catch (e) {
+
+      allPapers.assignAll(paperList);
+    } catch (e) {
       print(e);
-    } */
+      return;
+    }
+  }
+
+  void navigateToQuestions(
+      {required QuestionModel paper, bool tryAgain = false}) {
+    AuthController _authController = Get.find();
+
+    if (_authController.isLoggedIn()) {
+      if (tryAgain) {
+        Get.back();
+        //Get.toNamed();
+      } else {
+        //Get.toNamed();
+      }
+    } else {
+      print("Title :  ${paper.title}");
+      _authController.showLoginAlertDialogue();
+    }
   }
 }

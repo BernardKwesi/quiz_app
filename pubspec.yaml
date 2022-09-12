@@ -40,6 +40,11 @@ dependencies:
   cloud_firestore: ^3.1.0
   firebase_storage: ^10.3.5
   cached_network_image: ^3.2.1
+  flutter_zoom_drawer: ^2.1.2
+  url_launcher: ^6.0.18
+  firebase_auth: ^3.6.2
+  google_sign_in: ^5.4.0
+  flutter_svg: ^1.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -81,10 +86,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+      - family: AppIcons
+        fonts:
+           - asset: assets/icons/AppIcons.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

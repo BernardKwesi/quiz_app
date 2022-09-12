@@ -6,9 +6,7 @@ import 'app_colors.dart';
 mixin SubThemeData {
   TextTheme getTextTheme() {
     return GoogleFonts.quicksandTextTheme(const TextTheme(
-        bodyText1: TextStyle(
-          fontWeight: FontWeight.w400,
-        ),
+        bodyText1: TextStyle(fontWeight: FontWeight.w400, color: Colors.white),
         bodyText2: TextStyle(fontWeight: FontWeight.w400)));
   }
 
