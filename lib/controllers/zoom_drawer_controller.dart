@@ -31,6 +31,7 @@ class MyZoomDrawerController extends GetxController {
   }
 
   void website() {
+    print("Hello World");
     _launch("https://www.gdcl.gov.gh");
   }
 

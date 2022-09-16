@@ -39,27 +39,28 @@ class MenuScreen extends GetView<MyZoomDrawerController> {
                 const Spacer(flex: 1),
                 _DrawerButton(
                   icon: Icons.web,
-                  label: "website",
-                  onPressed: () => controller.website,
+                  label: "Website",
+                  onPressed: controller.website,
                 ),
                 _DrawerButton(
                   icon: Icons.email,
-                  label: "email",
-                  onPressed: () => controller.email,
+                  label: "Email",
+                  onPressed: controller.email,
                 ),
                 _DrawerButton(
                   icon: Icons.web,
                   label: "Github",
-                  onPressed: () => controller.github,
+                  onPressed: controller.github,
                 ),
                 const Spacer(
                   flex: 4,
                 ),
                 _DrawerButton(
                   icon: Icons.logout,
-                  label: "website",
-                  onPressed: () => controller.signOut,
+                  label: "Logout",
+                  onPressed: controller.signOut,
                 ),
+                const Spacer(flex: 2),
               ],
             )
           ]),
@@ -80,8 +81,11 @@ class _DrawerButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton.icon(
-        onPressed: () => onPressed,
-        icon: Icon(icon, size: 15),
-        label: Text(label));
+        onPressed: onPressed,
+        icon: Icon(icon, size: 20),
+        label: Text(label,
+            style: TextStyle(
+              fontSize: 20,
+            )));
   }
 }

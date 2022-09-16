@@ -31,7 +31,7 @@ class AuthController extends GetxController {
     final GoogleSignIn _googleSignIn = GoogleSignIn();
     try {
       GoogleSignInAccount? account = await _googleSignIn.signIn();
-
+      print("signing in with google ...............");
       if (account != null) {
         final _authAccount = await account.authentication;
 
@@ -45,7 +45,6 @@ class AuthController extends GetxController {
         navigateToHome();
       }
     } on Exception catch (e) {
-      /*  AppLogger.e(error); */
       print(e);
       return;
     }
@@ -92,9 +91,11 @@ class AuthController extends GetxController {
   }
 
   Future<void> signOut() async {
+    print("====================");
     print("Signing Out ....");
     try {
       await _auth.signOut();
+      Get.offNamed(HomeScreen.routeName);
     } on FirebaseAuthException catch (e) {
       print(e);
     }
